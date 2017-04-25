@@ -35,6 +35,7 @@ The best performing combination across the multiple run had been ***BIC with Com
 The WER can be imporved by using Language Models. The basic idea is that each word has some probability of occurrence within the set, and some probability that it is adjacent to specific other words. We can use that additional information to make better choices. With this approach, sign language word recognition would use this probability together with the one obtained from the HMM to identify words. The current model is "0-gram" statistics that is it only consider probability of current word based on hmm models. "1-gram", "2-gram", and/or "3-gram" statistics can be used to enhance the performance of the recognition.
 
 
+## Other Instructions
 ### Install
 
 This project requires **Python 3** and the following Python libraries installed:
