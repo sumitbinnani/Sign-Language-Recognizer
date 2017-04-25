@@ -2,6 +2,39 @@
 ## Probabilistic Models
 ## Project: Sign Language Recognition System
 
+
+## Summary
+
+To make the results a bit robust against randomness, all the feature sets (***Grounded Features***, ***Normalized Grounded Features***, ***Delta of Normalized Grounded Features***, ***Polar Features***, ***Combination Features*** for `features_ground`, `features_norm_grnd`, `features_delta_norm_grnd`, `features_polar` and `features_custom` respectively) were run for all the selection creteria (***Cross Validation Folds***, ***Bayesian Information Criterion***, ***Discriminative Information Criterion***) *three* times. The results for the same can be found in [results_set1.txt](./results_set1.txt), [results_set2.txt](./results_set2.txt) and [results_set3.txt](./results_set3.txt).
+
+Following table summarizes the result for all the above combinations with average Word Error Rate (WER) for each of the combinations:
+
+<img src="img/summary_table.png"></img>
+<center><i>Table: Summary of Results</i></center>
+
+**Best Feature Set:**
+
+<img src="img/features_wer.png"></img>
+<center><i>Fig: Performance of Feature Sets</i></center>
+
+It can be seen from the above figure that ***Combination Features*** performs best despite the choice of selection creterion. This is because it feature space already contains the individual features group and thus benefits from the learning of other feature sets too.
+
+
+**Selection Criteria:**
+
+<img src="img/selector_wer.png"></img>
+<center><i>Fig: Performance of Selection Criteria</i></center>
+
+It can be seen from the above figure that ***DIC*** and ***BIC*** performs better than ***Cross Validation*** when it comes to model's parameter selection. This is as expected as the dataset is not big enough and dividing data in cross validation sets would lead to lesser number of samples for training. DIC makes the model stronger by competing with other word models and BIC generalizes the models by improving within-class statistics.
+
+**Best Performing Combination:**
+The best performing combination across the multiple run had been ***BIC with Combination Feature*** predicting 107 out of 178 words and thus giving an Word Error Rate (WER) of **39.88%**. On an average, the WER for BIC with combination feature was 0.42 and DIC with combination feature was 0.44. The best performing combination has the advantages of both the feature set and selection criteria as discussed above.
+
+
+**How to imporve:**
+The WER can be imporved by using Language Models. The basic idea is that each word has some probability of occurrence within the set, and some probability that it is adjacent to specific other words. We can use that additional information to make better choices. With this approach, sign language word recognition would use this probability together with the one obtained from the HMM to identify words. The current model is "0-gram" statistics that is it only consider probability of current word based on hmm models. "1-gram", "2-gram", and/or "3-gram" statistics can be used to enhance the performance of the recognition.
+
+
 ### Install
 
 This project requires **Python 3** and the following Python libraries installed:
